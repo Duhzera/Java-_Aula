@@ -1,0 +1,126 @@
+
+package calculator;
+
+import java.awt.*;
+import java.awt.event.*;
+
+public class Calculator {
+
+    public static void main(String[] args) {
+        Frame fCalc = new Frame("AWS Calc (v0.0.1)");
+        
+        TextField txtNum1 = new TextField(10);
+        TextField txtNum2 = new TextField(10);
+        TextField txtResult = new TextField(10);
+        txtResult.setEditable(false);
+        
+        
+        //Criando Botao
+        Button btSum = new Button("Soma (+)");
+        Button btSub = new Button("Subtração (-)");       
+        Button btDivisao = new Button("Divisão(/)");
+        Button btMult = new Button("Multiplicação (*)");
+        
+        //Add um Listener para poder poder adicionar um evento no botao
+        btSum.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try{
+                double dbNum1 = Double.parseDouble(txtNum1.getText());
+                double dbNum2 = Double.parseDouble(txtNum2.getText());
+                double dbResult = dbNum1 + dbNum2;
+                txtResult.setText(Double.toString(dbResult));
+                }
+                catch(NumberFormatException ex) {
+                    txtResult.setText("ANIMAL NÃO USA LETRA");
+                }
+            }
+        });
+        btSub.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try{
+                double dbNum1 = Double.parseDouble(txtNum1.getText());
+                double dbNum2 = Double.parseDouble(txtNum2.getText());
+                double dbResult = dbNum1 - dbNum2;
+                txtResult.setText(Double.toString(dbResult));
+                }
+                catch(NumberFormatException ex) {
+                    txtResult.setText("ANIMAL NÃO USA LETRA");
+                }
+            }
+        });
+        
+        btDivisao.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try{
+                double dbNum1 = Double.parseDouble(txtNum1.getText());
+                double dbNum2 = Double.parseDouble(txtNum2.getText());
+                double dbResult = dbNum1 / dbNum2;
+                txtResult.setText(Double.toString(dbResult));
+                }
+                catch(NumberFormatException ex) {
+                    txtResult.setText("ANIMAL NÃO USA LETRA");
+                }
+            
+                
+            }
+        });
+        btMult.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try{
+                double dbNum1 = Double.parseDouble(txtNum1.getText());
+                double dbNum2 = Double.parseDouble(txtNum2.getText());
+                double dbResult = dbNum1 * dbNum2;
+                txtResult.setText(Double.toString(dbResult));
+                }
+                catch(NumberFormatException ex) {
+                    txtResult.setText("ANIMAL NÃO USA LETRA");
+                }
+            }
+        });
+        
+        fCalc.setLayout(new FlowLayout());
+        Panel pNum = new Panel();
+        pNum.setLayout(new GridLayout(2,2));
+        
+        //Criando painel para entrada de Numero
+        pNum.add(new Label("Número #1: "));
+        pNum.add(txtNum1);
+        pNum.add(new Label("Número #2: "));
+        pNum.add(txtNum2);
+        
+        //Criando Painel para apresentar o resultado
+        Panel pResult = new Panel();
+        pResult.setLayout(new FlowLayout());
+        pResult.add(new Label("Resultado:"));
+        pResult.add(txtResult);
+        
+        //Crinando Painel para o Botao Soma e Sub
+        Panel pTools = new Panel();
+        pTools.setLayout(new GridLayout(2,2));
+        pTools.add(btSum);
+        pTools.add(btSub);
+        pTools.add(btMult);
+        pTools.add(btDivisao);
+        
+        
+        
+        fCalc.setSize(1000,500);
+        fCalc.setVisible(true);
+        
+        //add Os paineis no Frame
+        fCalc.add(pNum);
+        fCalc.add(pResult);
+        fCalc.add(pTools);
+        
+        fCalc.addWindowListener(new WindowAdapter(){
+                @Override
+                public void windowClosing(WindowEvent e){
+                    fCalc.dispose();
+                }
+        });
+        
+}}
