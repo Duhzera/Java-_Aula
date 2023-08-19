@@ -1,0 +1,38 @@
+
+package aula2;
+
+
+import java.awt.*;
+import java.awt.event.*;
+
+public class Aula2 {
+
+
+    public static void main(String[] args) {
+        
+        Frame fFun = new Frame();
+        fFun.setLayout(null);
+        fFun.setSize(500,500);
+        fFun.setVisible(true);
+        
+        
+        fFun.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                Graphics g = fFun.getGraphics();
+                
+                if (e.getClickCount()>1){
+                    g.setColor(Color.RED);
+                }else{
+                    g.setColor(Color.BLUE);
+                }
+                
+                int width =25;
+                int height = 25;
+                g.fillOval(e.getX()-width/2,e.getY() - height/2,width,height);
+            }
+            
+            
+        });
+        
+        
