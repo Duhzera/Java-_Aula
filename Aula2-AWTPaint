@@ -1,0 +1,64 @@
+
+package awtpaint;
+
+import java.awt.*;
+import java.awt.event.*;
+
+public class AwtPaint {
+
+
+    public static void main(String[] args) {
+        Frame fPaint = new Frame();
+        fPaint.setLayout(null);
+        fPaint.setSize(1000,1000);
+        fPaint.setVisible(true);
+        
+        fPaint.addMouseMotionListener(new MouseMotionAdapter(){
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                Graphics g = fPaint.getGraphics();
+                if (e.getButton() == MouseEvent.BUTTON3){
+                
+                g.setColor(Color.WHITE);
+                }
+                else{
+                    g.setColor(Color.BLACK);
+                }
+                int width =15;
+                int height = 15;
+                g.fillOval(e.getX()-width/2,e.getY() - height/2,width,height);
+            }
+        
+        });
+        
+        /*
+        fPaint.addMouseMotionListener(new MouseMotionAdapter(){
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                Graphics g = fPaint.getGraphics();
+                if (e.getButton() == MouseEvent.BUTTON3){
+                
+                g.setColor(Color.WHITE);
+                }
+                else{
+                    g.setColor(Color.BLACK);
+                }
+                int width =15;
+                int height = 15;
+                g.fillOval(e.getX()-width/2,e.getY() - height/2,width,height);
+            
+            }
+            
+            
+        
+        });*/
+        
+        fPaint.addWindowListener(new WindowAdapter(){
+                @Override
+                public void windowClosing(WindowEvent e){
+                    fPaint.dispose();
+                }
+        });
+    }
+    
+}
