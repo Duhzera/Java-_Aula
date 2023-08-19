@@ -13,23 +13,26 @@ public class AwtPaint {
         fPaint.setSize(1000,1000);
         fPaint.setVisible(true);
         
-        fPaint.addMouseMotionListener(new MouseMotionAdapter(){
+
+                fPaint.addMouseMotionListener(new MouseMotionAdapter() {
             @Override
             public void mouseDragged(MouseEvent e) {
-                Graphics g = fPaint.getGraphics();
-                if (e.getButton() == MouseEvent.BUTTON3){
-                
-                g.setColor(Color.WHITE);
-                }
-                else{
-                    g.setColor(Color.BLACK);
-                }
-                int width =15;
+                int width = 15;
                 int height = 15;
-                g.fillOval(e.getX()-width/2,e.getY() - height/2,width,height);
-            }
+                Graphics g = fPaint.getGraphics();
         
-        });
+                if ((e.getModifiersEx() & MouseEvent.BUTTON1_DOWN_MASK) != 0) {  // Botão esquerdo
+                    g.setColor(Color.BLACK);
+                    g.fillOval(e.getX() - width / 2, e.getY() - height / 2, width, height);
+                } else if ((e.getModifiersEx() & MouseEvent.BUTTON3_DOWN_MASK) != 0) {  // Botão direito
+                    g.setColor(Color.WHITE);  // Pode ser outra cor de sua escolha
+                    g.fillOval(e.getX() - width / 2, e.getY() - height / 2, width, height);
+                }
+    }
+});
+                
+            
+        
         
         /*
         fPaint.addMouseMotionListener(new MouseMotionAdapter(){
@@ -59,6 +62,5 @@ public class AwtPaint {
                     fPaint.dispose();
                 }
         });
-    }
+    }}
     
-}
